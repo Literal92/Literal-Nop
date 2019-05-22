@@ -1,0 +1,122 @@
+﻿@model HeaderLinksModel
+@using System.Text.Encodings.Web
+
+<div class="header-links">
+    <ul>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
+        @if (Model.IsAuthenticated)
+        {
+            <li>
+                <a href="@Url.RouteUrl("CustomerInfo")" class="ico-register tagAHover">@*<i class="fas fa-user"></i>*@ @T("Account.MyAccount") @Model.CustomerName</a>
+            </li>
+            <li>
+                <a href="@Url.RouteUrl("Logout")" class="ico-logout tagAHover">@*<i class="fas fa-sign-out-alt"></i>*@  @T("Account.Logout")</a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.RouteUrl("Register")" class="ico-register tagAHover">@T("Account.Register")</a>
+            </li>
+            <li>
+                <a href="@Url.RouteUrl("Login")" class="ico-login tagAHover">@T("Account.Login")</a>
+            </li>
+        }
+        @*@if (Model.AllowPrivateMessages)
+            {
+                <li>
+                    <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">@T("PrivateMessages.Inbox")</a>
+                    <span class="qty inbox-qty">@Model.UnreadPrivateMessages</span>
+                </li>
+                if (!string.IsNullOrEmpty(Model.AlertMessage))
+                {
+                    //new private message notification
+                    <script type="text/javascript" asp-location="Footer">
+                        $(document).ready(function () {
+                            displayPopupNotification('@Html.Raw(JavaScriptEncoder.Default.Encode(Model.AlertMessage))', 'success', false);
+                        });
+                    </script>
+                }
+            }
+            @if (Model.WishlistEnabled)
+            {
+                <li>
+                    <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">@T("Wishlist")</a>
+                    <span class="qty wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+                </li>
+            }*@
+        @if (Model.ShoppingCartEnabled)
+        {
+            <li id="topcartlink">
+                @{
+                    var Count = T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems).Value;
+
+                }
+                <a href="@Url.RouteUrl("ShoppingCart")" style="min-width:100px;text-align: center;padding: 10px 10px;border-radius: 10px;border: 2px solid #29c729;background: #fff;color:#29c729" class="BastCart">
+                    @*<b style="margin:0 10px">@T("ShoppingCart")</b>*@
+
+                    <span class="badge" style="font-size: 12px;color: #29c729;">
+                        @T("ShoppingCart")  @(Count != "(0)" ? Count : "")
+                    </span>
+                </a>
+                <a href="@Url.RouteUrl("ShoppingCart")" style="min-width:100px;padding: 5px 10px;border-radius: 5px;display:none;" class="MiniBastCart">
+                    @*<b style="margin:0 10px">@T("ShoppingCart")</b>*@
+
+                    <span class="badge" style="font-size: 27px;color:#666">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+
+
+                    @if (Count != "0")
+                    {
+                        Count = Count.Substring(1);
+                        Count = Count.Substring(0, Count.Length - 1);
+
+                        <span class="badge" style="
+                        width: 27px;
+                        height: 27px;
+                        opacity:0.899;
+                        background: #30bd3c;
+                        color:#fff;
+                        font-weight:800;
+                        padding: 10px;
+                        border-radius: 50%;
+                        font-size: 10px;
+                        margin-top: -3px;
+                        margin-right: -29px;
+                        position: absolute;">
+                            @(Count)
+
+                        </span>
+                    }
+                </a>
+                <span class="qty cart-qty"></span>
+                @await Component.InvokeAsync("FlyoutShoppingCart")
+
+                @*<a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">@T("ShoppingCart")</a>
+                    <span class="qty cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+                    @await Component.InvokeAsync("FlyoutShoppingCart")*@
+            </li>
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })
+    </ul>
+</div>
+@if (Model.ShoppingCartEnabled)
+{
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            $('.header').on('mouseenter', '#topcartlink', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.header').on('mouseleave', '#topcartlink', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+            $('.header').on('mouseenter', '#flyout-cart', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.header').on('mouseleave', '#flyout-cart', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+        });
+    </script>
+}

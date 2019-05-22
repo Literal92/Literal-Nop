@@ -1,0 +1,11 @@
+{
+  "Group": "Faradata",
+  "FriendlyName": "FirstTest",
+  "SystemName": "Faradata.FirstTest",
+  "Version": "1.49",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "OMid Pirgazi",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.FaraData.FirstTest.dll",
+  "Description": "This plugin For Test."
+}

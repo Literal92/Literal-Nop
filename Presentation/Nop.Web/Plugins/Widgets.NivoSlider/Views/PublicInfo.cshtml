@@ -1,0 +1,172 @@
+﻿@model Nop.Plugin.Widgets.NivoSlider.Models.PublicInfoModel
+@{
+    Layout = "";
+
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Scripts/jquery.nivo.slider.js");
+    //Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/nivo-slider.css");
+    //Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/themes/custom/custom.css");
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Content/owl/owl.carousel.js");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/owl/assets/owl.carousel.min.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/owl/assets/owl.theme.default.min.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/Css/Style.css");
+}
+
+@{
+    var dataSlide1 = new ViewDataDictionary(ViewData)
+{
+{"pictureUrl", Model.Picture1Url},
+{ "text", Model.Text1},
+{ "link", Model.Link1},
+{"alttext", Model.AltText1 }
+};
+
+@*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)*@
+}
+
+@{
+    var dataSlide2 = new ViewDataDictionary(ViewData)
+{
+{"pictureUrl", Model.Picture2Url},
+{ "text", Model.Text2},
+{ "link", Model.Link2},
+{"alttext", Model.AltText2 }
+};
+
+@*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide2)*@
+}
+
+@{
+    var dataSlide3 = new ViewDataDictionary(ViewData)
+{
+{"pictureUrl", Model.Picture3Url},
+{ "text", Model.Text3},
+{ "link", Model.Link3},
+{"alttext", Model.AltText3 },
+{ "dataTransition", "slideInLeft"}
+};
+
+@*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide3)*@
+}
+
+@{
+    var dataSlide4 = new ViewDataDictionary(ViewData)
+{
+{"pictureUrl", Model.Picture4Url},
+{ "text", Model.Text4},
+{ "link", Model.Link4},
+{"alttext", Model.AltText4 }
+};
+
+@*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide4)*@
+}
+
+@{
+    var dataSlide5 = new ViewDataDictionary(ViewData)
+{
+{"pictureUrl", Model.Picture5Url},
+{ "text", Model.Text5},
+{ "link", Model.Link5},
+{"alttext", Model.AltText5 }
+};
+
+@*@await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide5)*@
+}
+
+<div class="row col-md-12" style="margin:0;padding:0">
+    <div class="owl-carousel FaraSlider" id="FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
+        @if (Model.Picture1Url != null && Model.Picture1Url != "")
+        {
+            <a href="@(Model.Link1)">
+                <div style="width:100%;height:300px;background:url('@(Model.Picture1Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text1)"></div>
+            </a>
+        }
+
+        @if (Model.Picture2Url != null && Model.Picture2Url != "")
+        {
+            <a href="@(Model.Link2)">
+                <div style="width:100%;height:300px;background:url('@(Model.Picture2Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text2)"></div>
+            </a>
+        }
+
+        @if (Model.Picture3Url != null && Model.Picture3Url != "")
+        {
+            <a href="@(Model.Link3)">
+                <div style="width:100%;height:300px;background:url('@(Model.Picture3Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text3)"></div>
+            </a>
+        }
+
+        @if (Model.Picture4Url != null && Model.Picture4Url != "")
+        {
+            <a href="@(Model.Link4)">
+                <div style="width:100%;height:300px;background:url('@(Model.Picture4Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text4)"></div>
+            </a>
+        }
+
+        @if (Model.Picture5Url != null && Model.Picture5Url != "")
+        {
+            <a href="@(Model.Link5)">
+                <div style="width:100%;height:300px;background:url('@(Model.Picture5Url)') center center no-repeat !important; background-size:cover !important" title="@(Model.Text5)"></div>
+            </a>
+        }
+    </div>
+    <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);right: 25px;z-index: 3;">
+        <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
+    </button>
+    <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);left: 25px;z-index: 3;">
+        <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
+    </button>
+</div>
+<script asp-location="Footer">
+    $(document).ready(function () {
+
+        var owlFara = $(".FaraSlider");
+        owlFara.owlCarousel({
+            animateOut: 'fadeOut',
+            loop: true,
+            items: 1,
+            margin: 0,
+            //autoplay:true,
+            //nav:true,
+            stagePadding: 0,
+            smartSpeed: 450
+        });
+
+        $('.homeLikeNextBtn').click(function () {
+            owlFara.trigger('next.owl.carousel');
+        })
+        // Go to the previous item
+        $('.homeLikePrevBtn').click(function () {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            owlFara.trigger('prev.owl.carousel', [300]);
+        });
+
+        // زمانی که تغییر میکند
+        owlFara.on('changed.owl.carousel', function (event) {
+            var element = event.target;
+            if (!event.namespace) return;
+            var carousel = event.relatedTarget,
+                current = carousel.current();
+            if (current === carousel.maximum()) {
+                $(element).siblings(".slider-left-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-left-arrow").fadeIn("slow");
+            }
+            // Provided by the core
+            // DOM element, in this example .owl-carousel
+            var name = event.type;           // Name of the event, in this example dragged
+            var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+            var items = event.item.count;     // Number of items
+            var item = event.item.index;     // Position of the current item
+            // Provided by the navigation plugin
+            var pages = event.page.count;     // Number of pages
+            var page = event.page.index;     // Position of the current page
+            if (item <= 0) {
+                $(element).siblings(".slider-right-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-right-arrow").fadeIn("slow");
+            }
+        })
+    });
+</script>

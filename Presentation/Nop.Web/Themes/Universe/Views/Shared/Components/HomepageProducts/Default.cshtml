@@ -1,0 +1,105 @@
+﻿@model IList<ProductOverviewModel>
+@if (Model.Count > 0)
+{
+<div class="product-grid home-page-product-grid">
+    <div class="title">
+        <strong>@T("HomePage.Products")</strong>
+    </div>
+    <div class="row col-12" style="padding: 0;margin: 0;min-height:0px">
+        <div class="item-grid owl-carousel  owl-theme owl-loaded" dir="ltr" id="ProductBestItems" style="margin:0 !important">
+            @foreach (var item in Model)
+            {
+                <div class="item-box">
+                    @await Html.PartialAsync("_ProductBox", item)
+                </div>
+            }
+        </div>
+        <button class="BtnNextBtn" style="background: #fff !important;position: absolute;top: calc(50% - 65px);right: 0px;z-index: 3;padding: 20px 10px;box-shadow: -5px 0 7px -1px #d6d6d6;margin-right: -1px;">
+            <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
+        </button>
+        <button class="BtnPrevBtn" style="background: #fff !important;position: absolute;top: calc(50% - 65px);left:0px;z-index: 3;padding: 20px 10px;box-shadow: 5px 0 7px -1px #d6d6d6;">
+            <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
+        </button>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+
+    <script>
+        $(document).ready(function () {
+
+            var owlFara = $("#ProductBestItems");
+            owlFara.owlCarousel({
+                animateOut: 'fadeOut',
+                loop: false,
+                margin: 20,
+                //autoplay:true,
+                nav:false,
+                stagePadding: 40,
+                smartSpeed: 450,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    768: {
+                        items: 4
+                    },
+                    1024: {
+                        items: 6
+                    }
+                }
+            });
+
+            $('.BtnNextBtn').click(function () {
+                owlFara.trigger('next.owl.carousel');
+            })
+            // Go to the previous item
+            $('.BtnPrevBtn').click(function () {
+                // With optional speed parameter
+                // Parameters has to be in square bracket '[]'
+                owlFara.trigger('prev.owl.carousel', [300]);
+            });
+
+            // زمانی که تغییر میکند
+            owlFara.on('changed.owl.carousel', function (event) {
+                var element = event.target;
+                if (!event.namespace) return;
+                var carousel = event.relatedTarget,
+                    current = carousel.current();
+                if (current === carousel.maximum()) {
+                    $(element).siblings(".slider-left-arrow").fadeOut("slow");
+                } else {
+                    $(element).siblings(".slider-left-arrow").fadeIn("slow");
+                }
+
+
+                // Provided by the core
+                // DOM element, in this example .owl-carousel
+                var name = event.type;           // Name of the event, in this example dragged
+                var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+                var items = event.item.count;     // Number of items
+                var item = event.item.index;     // Position of the current item
+
+
+                // Provided by the navigation plugin
+                var pages = event.page.count;     // Number of pages
+                var page = event.page.index;     // Position of the current page
+
+
+                if (item <= 0) {
+                    $(element).siblings(".slider-right-arrow").fadeOut("slow");
+                } else {
+                    $(element).siblings(".slider-right-arrow").fadeIn("slow");
+                }
+            })
+
+
+
+
+
+        });
+
+    </script>
+
+}
+

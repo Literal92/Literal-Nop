@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Faradata",
+  "FriendlyName": "Test Plugin",
+  "SystemName": "Faradata.Test",
+  "Version": "1.51",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "OMid Pirgazi",
+  "DisplayOrder": 5,
+  "FileName": "Nop.Plugin.Faradata.Test.dll",
+  "Description": "This plugin enables Facebook authentication (login using Facebook account)"
+}

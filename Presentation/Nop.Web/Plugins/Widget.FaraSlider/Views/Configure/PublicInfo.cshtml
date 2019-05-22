@@ -1,0 +1,88 @@
+﻿@using Nop.Web.Framework.UI;
+@{
+    Layout = "";
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widget.FaraSlider/Content/owl/owl.carousel.js");
+    Html.AddCssFileParts("~/Plugins/Widget.FaraSlider/Content/owl/assets/owl.carousel.min.css");
+    Html.AddCssFileParts("~/Plugins/Widget.FaraSlider/Content/owl/assets/owl.theme.default.min.css");
+}
+
+<div class="row col-md-12" style="margin:0;padding:0">
+    <div class="owl-carousel FaraSlider" style="border-radius:5px;padding:0;margin: 0 0 10px 0;overflow:hidden;height: 300px;" dir="ltr">
+        <div style="width:100%;height:300px;background:url('https://dkstatics-public-2.digikala.com/digikala-adservice-banners/1000002927.jpg') center center no-repeat !important; background-size:cover !important"></div>
+        <div style="width:100%;height:300px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000002902.jpg') center center no-repeat !important; background-size:cover !important"></div>
+        <div style="width:100%;height:300px;background:url('https://dkstatics-public.digikala.com/digikala-adservice-banners/1000003103.jpg') center center no-repeat !important; background-size:cover !important"></div>
+    </div>
+    <button class="homeLikeNextBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);right: 25px;z-index: 3;">
+        <img src="~/Plugins/Widget.FaraSlider/Content/image/next.png" width="25" />
+    </button>
+    <button class="homeLikePrevBtn" style="background: none !important;position: absolute;top: calc(50% - 20px);left: 25px;z-index: 3;">
+        <img src="~/Plugins/Widget.FaraSlider/Content/image/Prev.png" width="25" />
+    </button>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var owlFara = $(".FaraSlider");
+        owlFara.owlCarousel({
+            animateOut: 'fadeOut',
+            loop: true,
+            items: 1,
+            margin: 0,
+            //autoplay:true,
+            //nav:true,
+            stagePadding: 0,
+            smartSpeed: 450
+        });
+
+        $('.homeLikeNextBtn').click(function () {
+            owlFara.trigger('next.owl.carousel');
+        })
+        // Go to the previous item
+        $('.homeLikePrevBtn').click(function () {
+            // With optional speed parameter
+            // Parameters has to be in square bracket '[]'
+            owlFara.trigger('prev.owl.carousel', [300]);
+        });
+
+        // زمانی که تغییر میکند
+        owlFara.on('changed.owl.carousel', function (event) {
+            var element = event.target;
+            if (!event.namespace) return;
+            var carousel = event.relatedTarget,
+                current = carousel.current();
+            if (current === carousel.maximum()) {
+                $(element).siblings(".slider-left-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-left-arrow").fadeIn("slow");
+            }
+
+
+            // Provided by the core
+            // DOM element, in this example .owl-carousel
+            var name = event.type;           // Name of the event, in this example dragged
+            var namespace = event.namespace;      // Namespace of the event, in this example owl.carousel
+            var items = event.item.count;     // Number of items
+            var item = event.item.index;     // Position of the current item
+
+
+            // Provided by the navigation plugin
+            var pages = event.page.count;     // Number of pages
+            var page = event.page.index;     // Position of the current page
+
+
+            if (item <= 0) {
+                $(element).siblings(".slider-right-arrow").fadeOut("slow");
+            } else {
+                $(element).siblings(".slider-right-arrow").fadeIn("slow");
+            }
+        })
+
+
+
+
+
+    });
+
+</script>

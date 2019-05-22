@@ -1,0 +1,154 @@
+
+@media all and (min-width: 1320px) {
+
+	/* GLOBAL */
+
+	.master-column-wrapper {
+		min-width: 1280px;
+		max-width: 1600px;
+	}
+
+	/* HEADER */
+
+	.header-upper .center,
+	.header-lower .center {
+		min-width: 1280px;
+		max-width: 1600px;
+	}
+	.header-menu-parent {
+		margin: 0 0 50px;
+	}
+	.header-menu > ul {
+		min-width: 1280px;
+		max-width: 1600px;
+	}
+
+	/* FOOTER */
+
+	.footer-middle .center,
+	.footer-lower .center {
+		min-width: 1280px;
+		max-width: 1600px;
+	}
+	.footlist-wrapper {
+		margin: 0 -1.5%;
+	}
+	.footlist {
+		width: 22%;
+		margin: 0 1.5%;
+	}
+	
+	/* SLIDER */
+	
+	.slider-wrapper,
+	.theme-custom.slider-wrapper {
+		margin-top: -51px;
+	}
+
+	/* LEFT/RIGHT COLUMN */
+
+	.center-2 {
+		width: calc(100% - 350px);
+		min-width: 78%;
+	}
+	.side-2 {
+		width: 20%;
+		max-width: 310px;
+	}
+
+	/* CATEGORY PAGE & GRIDS */
+
+	.breadcrumb {
+		margin-bottom: 30px;
+	}
+	.item-box .details {
+		padding: 6% 5% 8%;
+	}
+
+	.center-1 .item-grid {
+		margin: 0 -0.5%;
+	}
+	.center-1 .item-box {
+		width: 19%;
+		margin: 0 0.5% 30px;
+	}
+	.center-1 .item-box:nth-child(4n+1) {
+		clear: none;
+	}
+	.center-1 .item-box:nth-child(5n+1) {
+		clear: both;
+	}
+
+	.home-page-category-grid {
+		margin-bottom: 50px;
+	}
+	.home-page-category-grid .item-box {
+		width: 23%;
+	}
+	.home-page-category-grid 
+	.item-box:nth-child(4n+1) {
+		clear: both;
+	}
+	.home-page-category-grid 
+	.item-box:nth-child(5n+1) {
+		clear: none;
+	}
+
+	.center-2 .item-box {
+		width: 23%;
+	}
+	.center-2 .item-box:nth-child(3n+1) {
+		clear: none;
+	}
+	.center-2 .item-box:nth-child(4n+1) {
+		clear: both;
+	}
+
+	.sub-category-grid .item-box {
+		width: 31.333%;
+	}
+	.sub-category-grid 
+	.item-box:nth-child(2n+1),
+	.sub-category-grid 
+	.item-box:nth-child(4n+1) {
+		clear: none;
+	}
+	.sub-category-grid 
+	.item-box:nth-child(3n+1) {
+		clear: both;
+	}
+
+	/* PRODUCT PAGE */
+
+	.gallery {
+		width: 40%;
+	}
+	.overview {
+		margin-left: 43%;
+	}
+	.variant-picture + .variant-overview {
+		margin-left: 280px;
+	}
+	
+	/* TOPICS */
+	
+	.topic-page .page-body {
+		max-width: 1100px;
+		margin: auto;
+		padding: 0 0 10px;
+	}
+
+	/* BLOG & NEWS */
+
+	.news-list-homepage .news-item {
+		width: 32%;
+	}
+	.news-list-homepage .news-item:nth-child(odd),
+	.news-list-homepage .news-item:nth-child(even) {
+		margin-left: 2%;
+	}
+	.news-list-homepage .news-item:nth-child(3n+1) {
+		margin-left: 0;
+	}
+	
+}

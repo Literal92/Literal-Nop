@@ -1,0 +1,24 @@
+﻿@model Nop.Plugin.Company.Media.Domain.MediaCategory
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminPopupLayout.cshtml";
+}
+<form asp-controller="MediaCategory" asp-action="Create"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Plugins.Company.Media.AddNew")
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Plugins.Company.Media.Save")
+            </button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-horizontal">
+            @await Html.PartialAsync("~/Plugins/Company.Media/Views/MediaCategory/_CreateOrUpdate.cshtml", Model)
+        </div>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_ColumnsOne";
+
+    //page class
+    Html.AppendPageCssClassParts("html-home-page");
+}
+<div class="page home-page">
+    <div class="page-body">
+        @*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomePageText" })*@
+        <div class="row col-12" style="margin:0">
+            <div class="col-lg-2 col-md-4 col-sm-hidden">
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeCategories })
+                @await Component.InvokeAsync("HomepageCategories")
+            </div>
+            <div class="col-lg-10 col-md-8 col-sm-12">
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeProducts })
+                @await Component.InvokeAsync("HomepageProducts")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeBestSellers })
+                @await Component.InvokeAsync("HomepageBestSellers")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforeNews })
+                @await Component.InvokeAsync("HomepageNews")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBeforePoll })
+                @await Component.InvokeAsync("HomepagePolls")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageBottom })
+            </div>
+        </div>
+    </div>
+</div>

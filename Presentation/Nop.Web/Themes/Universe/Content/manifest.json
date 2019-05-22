@@ -1,0 +1,38 @@
+﻿{
+  "name": "فروشگاه فرادیتا",
+  "short_name": "فرادیتا",
+  //"icons": [
+  //  {
+  //    "src": "images/logo_dayamooz.png",
+  //    "sizes": "128x128",
+  //    "type": "image/png"
+  //  },
+  //  {
+  //    "src": "images/logo_dayamooz.png",
+  //    "sizes": "144x144",
+  //    "type": "image/png"
+  //  },
+  //  {
+  //    "src": "images/logo_dayamooz.png",
+  //    "sizes": "152x152",
+  //    "type": "image/png"
+  //  },
+  //  {
+  //    "src": "images/logo_dayamooz.png",
+  //    "sizes": "192x192",
+  //    "type": "image/png"
+  //  },
+  //  {
+  //    "src": "images/logo_dayamooz.png",
+  //    "sizes": "256x256",
+  //    "type": "image/png"
+  //  }
+  //],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0297a7",
+  "theme_color": "#0297a7",
+
+
+  "orientation": "portrait"
+}

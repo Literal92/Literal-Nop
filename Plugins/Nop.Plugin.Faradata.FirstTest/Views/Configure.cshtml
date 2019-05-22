@@ -1,0 +1,10 @@
+﻿
+@{
+    Layout = "_AdminLayout";
+}
+<div class="facebook-login-block">
+    <h4>Public Info</h4>
+    <div class="buttons">
+        <a asp-controller="facebookauthentication" asp-action="login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" class="facebook-btn"></a>
+    </div>
+</div>

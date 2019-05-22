@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "زرین پال",
+  "SystemName": "Resanehlab.ZarinPal",
+  "Version": "1.00",
+  "SupportedVersions": [
+    "4.10"
+  ],
+  "Author": "Resanehlab",
+  "DisplayOrder": 1,
+  "FileName": "Resanehlab.Plugin.Payments.ZarinPal.dll",
+  "Description": "This plugin allows customers to pay orders with ZarinPal gateway",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": []
+}

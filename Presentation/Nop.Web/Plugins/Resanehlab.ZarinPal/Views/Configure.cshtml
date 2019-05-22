@@ -1,0 +1,155 @@
+﻿@model Resanehlab.Plugin.Payments.ZarinPal.Models.ConfigurationModel
+@using Nop.Web.Framework;
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+        $("#PassProductNamesAndTotals").click(togglePassProductNamesAndTotals);
+	    togglePassProductNamesAndTotals();
+	});
+
+    function togglePassProductNamesAndTotals() {
+        warningValidation('@Url.Action("RoundingWarning", "PaymentZarinPal")', 'PassProductNamesAndTotals',
+            { passProductNamesAndTotals: $('#PassProductNamesAndTotals').is(':checked') });
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @T("Plugins.Payments.ZarinPal.Instructions")
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="UseSandbox_OverrideForStore" asp-input="UseSandbox" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="UseSandbox" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="UseSandbox" />
+                        <span asp-validation-for="UseSandbox"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="ZarinPalId_OverrideForStore" asp-input="ZarinPalId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="ZarinPalId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ZarinPalId" />
+                        <span asp-validation-for="ZarinPalId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="BusinessPhoneNumber_OverrideForStore" asp-input="BusinessPhoneNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="BusinessPhoneNumber" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="BusinessPhoneNumber" />
+                        <span asp-validation-for="BusinessPhoneNumber"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="BusinessEmail_OverrideForStore" asp-input="BusinessEmail" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="BusinessEmail" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="BusinessEmail" />
+                        <span asp-validation-for="BusinessEmail"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="PdtValidateOrderTotal_OverrideForStore" asp-input="PdtValidateOrderTotal" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="PdtValidateOrderTotal" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PdtValidateOrderTotal" />
+                        <span asp-validation-for="PdtValidateOrderTotal"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="AdditionalFee_OverrideForStore" asp-input="AdditionalFee" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="AdditionalFee" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AdditionalFee" />
+                        <span asp-validation-for="AdditionalFee"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="AdditionalFeePercentage_OverrideForStore" asp-input="AdditionalFeePercentage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="AdditionalFeePercentage" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AdditionalFeePercentage" />
+                        <span asp-validation-for="AdditionalFeePercentage"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="PassProductNamesAndTotals_OverrideForStore" asp-input="PassProductNamesAndTotals" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="PassProductNamesAndTotals" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PassProductNamesAndTotals" />
+                        <span asp-validation-for="PassProductNamesAndTotals"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="ReturnFromZarinPalWithoutPaymentRedirectsToOrderDetailsPage_OverrideForStore" asp-input="ReturnFromZarinPalWithoutPaymentRedirectsToOrderDetailsPage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="ReturnFromZarinPalWithoutPaymentRedirectsToOrderDetailsPage" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ReturnFromZarinPalWithoutPaymentRedirectsToOrderDetailsPage" />
+                        <span asp-validation-for="ReturnFromZarinPalWithoutPaymentRedirectsToOrderDetailsPage"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="DefaultCurrencyId_OverrideForStore" asp-input="DefaultCurrencyId" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="DefaultCurrencyId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-select asp-for="DefaultCurrencyId" asp-items="@Model.AvailableCurrencies" />
+                        <span asp-validation-for="DefaultCurrencyId"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="IsRial_OverrideForStore" asp-input="IsRial" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="IsRial" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IsRial" />
+                        <span asp-validation-for="IsRial"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

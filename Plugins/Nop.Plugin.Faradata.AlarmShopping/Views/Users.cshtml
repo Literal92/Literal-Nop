@@ -1,0 +1,66 @@
+﻿@model List<Nop.Plugin.Faradata.AlarmShopping.Domain.FaraBotUser>
+@inject Nop.Core.Domain.Common.AdminAreaSettings adminAreaSettings
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        کاربران بات
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">نام کاربری</th>
+                    <th scope="col">وضعیت</th>
+                    <th scope="col">حذف</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    int i = 1;
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@i .</th>
+                            <td>@item.username</td>
+                            <td>@item.IsActive</td>
+                            <td>
+                                <form class="delForm" action="/Admin/FaraBot/Users" asp-controller="FaraBot" asp-action="Delete" method="post">
+                                    <input type="hidden" id="id" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash-o "></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <div class="panel-footer">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.delForm').submit(function () {
+      var status = confirm("آیا برای حذف مطمئن هستید؟");
+      if (status === false) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+</script>

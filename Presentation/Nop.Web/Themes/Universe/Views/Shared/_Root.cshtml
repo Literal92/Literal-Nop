@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "_Root.Head";
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@await Html.PartialAsync("_Notifications")
+@await Html.PartialAsync("_JavaScriptDisabledWarning")
+@await Html.PartialAsync("_OldInternetExplorerWarning")
+
+@{
+    var homePageCss = String.Empty;
+    var missingHomePageSlider = String.Empty;
+    var homePageMainSliderHtml = String.Empty;
+
+    var controllerName = Url.ActionContext.RouteData.Values["controller"].ToString();
+    var isHomePage = controllerName.Equals("home", StringComparison.InvariantCultureIgnoreCase);
+    if (isHomePage)
+    {
+        homePageCss = "fullscreen";
+        var homePageMainSlider = await Component.InvokeAsync("Widget", new { widgetZone = "home_page_main_slider" });
+        homePageMainSliderHtml = homePageMainSlider.ToHtmlString();
+
+        if (String.IsNullOrEmpty(homePageMainSliderHtml))
+        {
+            missingHomePageSlider = "no-slider";
+        }
+    }
+
+}
+
+<div class="master-wrapper-page @homePageCss @missingHomePageSlider">
+    <script asp-location="Footer">
+        AjaxCart.init(false, '.cart-wrapper .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+    </script>
+    <div class="overlayOffCanvas"></div>
+    @await Component.InvokeAsync("AdminHeaderLinks")
+    @await Html.PartialAsync("_Header")
+    <div class="responsive-nav-wrapper-parent">
+        <div class="responsive-nav-wrapper">
+            <div class="menu-title">
+                <span>@*T("SevenSpikes.Themes.Common.MenuTitle")*@  </span>
+            </div>
+            <div class="filters-button">
+                <span>@*T("SevenSpikes.Themes.Common.Filters")*@  </span>
+            </div>
+        </div>
+    </div>
+    <div class="header-menu">
+        <div class="close-menu">
+            <span>@*T("SevenSpikes.Themes.Common.CloseMenu")*@   </span>
+        </div>
+        @{
+            var menu = await Component.InvokeAsync("Widget", new { widgetZone = "theme_header_menu" });
+        }
+        @if (String.IsNullOrEmpty(menu.ToHtmlString()))
+        {
+            @await Component.InvokeAsync("TopMenu")
+        }
+        else
+        {
+            @menu
+        }
+    </div>
+    @if (isHomePage) {
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomePageTop })
+    }
+    <div class="master-wrapper-content">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+        @*ajax loading window*@
+        <div class="ajax-loading-block-window" style="display: none">
+            <div class="loading-image">
+            </div>
+        </div>
+
+        @Html.Raw(homePageMainSliderHtml)
+
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
+    </div>
+
+    @await Component.InvokeAsync("Footer")
+</div>
+@await Component.InvokeAsync("EuCookieLaw")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

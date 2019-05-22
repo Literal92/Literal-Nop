@@ -1,0 +1,22 @@
+﻿[
+  "DiscountRequirement.MustBeAssignedToCustomerRole",
+  "CurrencyExchange.ECB",
+  "ExternalAuth.Facebook",
+  "Payments.CheckMoneyOrder",
+  "Payments.Manual",
+  "Payments.Square",
+  "Payments.WorldpayUS",
+  "Payments.OkPay",
+  "Payments.PayPalStandard",
+  "Shipping.UPS",
+  "Tax.FixedOrByCountryStateZip",
+  "Widgets.GoogleAnalytics",
+  "Widgets.NivoSlider",
+  "Pickup.PickupInStore",
+  "Company.Media",
+  "Faradata.FirstWidget",
+  "Faradata.IranSansWidget",
+  "Widget.FaraSlider",
+  "Resanehlab.ZarinPal",
+  "Faradata.AlarmShopping"
+]

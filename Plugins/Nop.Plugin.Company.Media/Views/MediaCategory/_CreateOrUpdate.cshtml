@@ -1,0 +1,49 @@
+﻿@model Nop.Plugin.Company.Media.Domain.MediaCategory
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+<input asp-for="MediaCategoryParentId" type="hidden" />
+
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+<div class="panel-group">
+    <div class="panel panel-default panel-popup">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="MediaCategoryName" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="MediaCategoryName" />
+                    <span asp-validation-for="MediaCategoryName"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="MediaCategoryLatinName" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="MediaCategoryLatinName" />
+                    <span asp-validation-for="MediaCategoryLatinName"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="MediaCategoryCode" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="MediaCategoryCode" />
+                    <span asp-validation-for="MediaCategoryCode"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

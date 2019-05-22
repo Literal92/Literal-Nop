@@ -1,0 +1,22 @@
+﻿@model Nop.Plugin.Company.Media.Model.MediaModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminPopupLayout.cshtml";
+}
+<form asp-controller="Media" asp-action="Edit"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Plugins.Company.Media.Save")
+            </button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-horizontal">
+            @await Html.PartialAsync("~/Plugins/Company.Media/Views/Media/_CreateOrUpdate.cshtml", Model)
+        </div>
+    </div>
+</form>
+

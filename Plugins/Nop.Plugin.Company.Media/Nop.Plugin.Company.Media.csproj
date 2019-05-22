@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup>
+   <TargetFramework>netcoreapp2.1</TargetFramework>
+ </PropertyGroup>  
+ <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+   <OutputPath>..\..\Presentation\Nop.Web\Plugins\Paradaim.Media</OutputPath>
+   <OutDir>$(OutputPath)</OutDir>
+ </PropertyGroup>
+ <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+   <OutputPath>..\..\Presentation\Nop.Web\Plugins\Paradaim.Media</OutputPath>
+   <OutDir>$(OutputPath)</OutDir>
+ </PropertyGroup>
+ <!-- This target execute after "Build" target -->
+ <Target Name="NopTarget" AfterTargets="Build">
+   <!-- Delete unnecessary libraries from plugins path -->
+   <MSBuild Projects="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+ </Target>
+ <ItemGroup>
+   <None Remove="plugin.json" />
+   <None Remove="Views\MediaCategory\Configure.cshtml" />
+   <None Remove="Views\MediaCategory\Create.cshtml" />
+   <None Remove="Views\MediaCategory\Edit.cshtml" />
+   <None Remove="Views\MediaCategory\_CreateOrUpdate.cshtml" />
+   <None Remove="Views\MediaCategory\_ViewImports.cshtml" />
+   <None Remove="Views\Media\Configure.cshtml" />
+   <None Remove="Views\Media\Create.cshtml" />
+   <None Remove="Views\Media\Edit.cshtml" />
+   <None Remove="Views\Media\_CreateOrUpdate.cshtml" />
+   <None Remove="Views\Media\_ViewImports.cshtml" />
+ </ItemGroup>
+ <ItemGroup>
+   <Content Include="plugin.json">
+     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\MediaCategory\Configure.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\MediaCategory\Create.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\MediaCategory\Edit.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\MediaCategory\_CreateOrUpdate.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\MediaCategory\_ViewImports.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\Media\Configure.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\Media\Create.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\Media\Edit.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\Media\_CreateOrUpdate.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+   <Content Include="Views\Media\_ViewImports.cshtml">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+ </ItemGroup>
+ <ItemGroup>
+   <ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj" />
+   <ProjectReference Include="..\..\Libraries\Nop.Data\Nop.Data.csproj" />
+   <ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj" />
+   <ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
+ </ItemGroup>
+</Project>

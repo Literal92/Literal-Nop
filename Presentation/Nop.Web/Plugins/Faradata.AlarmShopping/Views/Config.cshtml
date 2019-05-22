@@ -1,0 +1,52 @@
+﻿@model Nop.Plugin.Faradata.AlarmShopping.Domain.FaraBotConfig
+@inject Nop.Core.Domain.Common.AdminAreaSettings adminAreaSettings
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+
+<form action="/admin/Farabot/Config" asp-controller="FaraBot" asp-action="Config" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @*@T("ss")*@
+            تنظیمات بات اطلاع رسانی فروش
+        </div>
+        <div class="panel-body">
+
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-warning alert-dismissable" style="margin:20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    @(TempData["message"].ToString())
+                </div>
+            }
+            <nop-editor asp-for="TokenApi" />
+            <nop-label asp-for="TokenApi" />
+            <input type="hidden" value="@(Model.Id)" id="id" name="id"/>
+            <div class="form-group">
+                <div class="col-md-3 text-center ">
+                    <label asp-for="Model.TokenApi" class="control-label">شناسه بات: </label>
+                    <label title="توکنی که از botFather دریافت می کنید را در این قسمت وارد نمایید." data-toggle="tooltip" class="ico-help"><i class="fa fa-question-circle text-blue"></i></label>
+                </div>
+                <div class="col-md-9">
+                    <input asp-for="Model.TokenApi" id="TokenApi" name="TokenApi" value="@(Model.TokenApi)" class="form-control text-box single-line" style="text-align:left;direction:ltr" />
+                </div>
+            </div>
+            @*<div class="form-group">
+                <div class="col-md-3 text-center ">
+                    <label asp-for="Model.IsActive" class="control-label">فعال/غیرفعال: </label>
+                </div>
+                <div class="col-md-9">
+                    <input type="checkbox" asp-for="Model.IsActive" id="IsActive" name="IsActive" checked="@(Model.IsActive)" class="check-box" />
+                </div>
+            </div>*@
+        </div>
+        <div class="panel-footer">
+            <input type="submit" id="btnAddNewOption" class="btn btn-success" value="ذخیره تغییرات" />
+            <a href="/bot/message/update" class="btn btn-info" value="راه اندازی مجدد">راه اندازی مجدد/فعال سازی</a>
+        </div>
+    </div>
+</form>
+
+

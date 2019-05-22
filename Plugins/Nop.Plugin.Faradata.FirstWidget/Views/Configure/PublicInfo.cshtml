@@ -1,0 +1,20 @@
+﻿@using Nop.Web.Framework.UI;
+
+@{
+    //Loading CSS file
+    Html.AddCssFileParts(ResourceLocation.Head, "~/Plugins/Faradata.IranSansWidget/Content/css/Style.css", excludeFromBundle: true);
+
+    //Loading js file
+    //Third parameter value indicating whether to exclude this script from bundling
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Faradata.IranSansWidget/Scripts/JavaScripts.js", excludeFromBundle: true);
+}
+
+<a href="http://faradata.co">
+    <div class="alireza" style="">
+        <img src="~/Plugins/faradata.IranSansWidget/logo.png" style="float:right" />
+        <div style="float:right;padding: 40px;font-weight: 800;font-size: 20px;">
+            فرادیتا
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</a>

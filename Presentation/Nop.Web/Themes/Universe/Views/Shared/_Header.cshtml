@@ -1,0 +1,46 @@
+﻿@{
+    var taxTypeSelectorHtml = await Component.InvokeAsync("TaxTypeSelector");
+    var currencySelectorHtml = await Component.InvokeAsync("CurrencySelector");
+    var languageSelectorHtml = await Component.InvokeAsync("LanguageSelector");
+    var headerSelectorWidgetHtml = await Component.InvokeAsync("Widget", new { widgetZone = "header_selectors" });
+}
+
+<div class="header">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-upper" style="background:#eee">
+        <div class="center">
+            <div class="header-links-wrapper">
+                @*@await Component.InvokeAsync("HeaderLinks")*@
+            </div>
+            @await Component.InvokeAsync("AdminHeaderLinks")
+        </div>
+    </div>
+
+    <div class="header-lower" style="padding:0">
+        <div class="center">
+            <div class="header-logo text-center col-md-2">
+                @await Component.InvokeAsync("Logo")
+            </div>
+            @if (!String.IsNullOrEmpty(taxTypeSelectorHtml.ToHtmlString()) ||
+             !String.IsNullOrEmpty(currencySelectorHtml.ToHtmlString()) ||
+             !String.IsNullOrEmpty(languageSelectorHtml.ToHtmlString()))
+            {
+                <div class="header-selectors-wrapper">
+                    <div class="header-selectors">
+                        @taxTypeSelectorHtml
+                        @currencySelectorHtml
+                        @languageSelectorHtml
+                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+                    </div>
+                </div>
+            }
+            <div class="search-box store-search-box text-right col-md-9">
+                @await Component.InvokeAsync("SearchBox")
+            </div>
+            <div class="header-links-wrapper" style="padding:10px 0 0 0 ">
+                @await Component.InvokeAsync("HeaderLinks")
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>

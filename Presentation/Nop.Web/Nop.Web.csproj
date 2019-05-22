@@ -1,0 +1,356 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Copyright>Copyright © Nop Solutions, Ltd</Copyright>
+    <Company>Nop Solutions, Ltd</Company>
+    <Authors>Nop Solutions, Ltd</Authors>
+    <Version>4.1.0.0</Version>
+    <Description>Nop.Web is also an MVC web application project, a presentation layer for public store and admin area.</Description>
+    <PackageLicenseUrl>http://www.nopcommerce.com/licensev3.aspx</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.nopcommerce.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\Nop.Data\Nop.Data.csproj" />
+    <ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj" />
+    <ProjectReference Include="..\Nop.Web.Framework\Nop.Web.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- We copy the entire \App_Data directory. But we ignore JSON files and data protection keys  -->
+    <Content Include="App_Data\**" CopyToPublishDirectory="PreserveNewest" Exclude="App_Data\*.json" />
+    <Content Update="App_Data\*.json" CopyToPublishDirectory="Never" />
+    <Content Update="App_Data\DataProtectionKeys\*.xml" CopyToPublishDirectory="Never" />
+
+    <Compile Remove="Plugins\**" />
+    <EmbeddedResource Remove="Plugins\**" />
+    <None Remove="Plugins\**" />
+
+    <!-- We copy the entire \Plugins and \Themes directories.
+	    But we ignore cshtml and JSON files to avoid "Duplicate 'Content' items were included" error during publishing.
+	    We also can use "CheckForDuplicateItemsContinueOnError" as per https://github.com/dotnet/sdk/blob/master/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.Sdk.DefaultItems.targets -->
+    <Content Include="Plugins\**" CopyToPublishDirectory="PreserveNewest" Exclude="Plugins\**\*.config;Plugins\**\*.cshtml;Plugins\**\*.json" />
+    <Content Include="Themes\**" CopyToPublishDirectory="PreserveNewest" Exclude="Themes\**\*.config;Themes\**\*.cshtml;Themes\**\*.json" />
+
+    <!-- We copy the \Logs directory -->
+    <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <None Remove="Themes\Universe\Content\css\Custome.css" />
+    <None Remove="Themes\Universe\Content\img\basket_512x512.png" />
+    <None Remove="Themes\Universe\Content\img\empty.png" />
+    <None Remove="Themes\Universe\Content\owl\assets\ajax-loader.gif" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.carousel.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.default.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.theme.green.min.css" />
+    <None Remove="Themes\Universe\Content\owl\assets\owl.video.play.png" />
+    <None Remove="Themes\Universe\Content\owl\LICENSE" />
+    <None Remove="Themes\Universe\Content\owl\owl.carousel.js" />
+    <None Remove="Themes\Universe\Content\owl\owl.carousel.min.js" />
+    <None Remove="Themes\Universe\Content\owl\README.md" />
+    <None Remove="Themes\Universe\Content\scripts\jquery.steps.js" />
+    <None Remove="Themes\Universe\Content\scripts\jquery.steps.min.js" />
+    <None Include="Themes\NobleTheme\Views\BackInStockSubscription\CustomerSubscriptions.cshtml" />
+    <None Include="Themes\NobleTheme\Views\BackInStockSubscription\SubscribePopup.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Blog\BlogPost.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Blog\Components\BlogMonths\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Blog\Components\BlogTags\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Blog\List.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\ActiveDiscussions.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Components\ForumActiveDiscussionsSmall\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Components\ForumBreadcrumb\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Components\ForumLastPost\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\CustomerForumSubscriptions.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Forum.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\ForumGroup.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Index.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\PostCreate.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\PostEdit.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Search.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\Topic.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\TopicCreate.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\TopicEdit.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\TopicMove.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_ActiveTopics.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_CreateUpdatePost.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_CreateUpdateTopic.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_ForumGroup.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_ForumHeader.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_ForumPost.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Boards\_SearchBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\ManufacturerAll.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\ManufacturerTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\ProductsByTag.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\ProductTagsAll.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\Search.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\Vendor.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\VendorAll.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\_CatalogSelectors.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\_FilterPriceBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Catalog\_FilterSpecsBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\BillingAddress.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\Completed.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\Confirm.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OnePageCheckout.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcBillingAddress.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcConfirmOrder.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcPaymentInfo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcPaymentMethods.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcShippingAddress.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\OpcShippingMethods.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\PaymentInfo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\PaymentMethod.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\ShippingAddress.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Checkout\ShippingMethod.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Common\ContactUs.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Common\ContactVendor.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Common\PageNotFound.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Common\Sitemap.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Common\StoreClosed.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\AccountActivation.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\AddressAdd.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\AddressEdit.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\Addresses.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\Avatar.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\ChangePassword.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\CheckGiftCardBalance.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\DownloadableProducts.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\EmailRevalidation.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\GdprTools.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\Info.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\Login.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\PasswordRecovery.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\PasswordRecoveryConfirm.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\Register.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\RegisterResult.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\UserAgreement.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\_CheckUsernameAvailability.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\_CustomerAttributes.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Customer\_ExternalAuthentication.Errors.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Home\Index.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Install\Index.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Newsletter\SubscriptionActivation.cshtml" />
+    <None Include="Themes\NobleTheme\Views\News\List.cshtml" />
+    <None Include="Themes\NobleTheme\Views\News\NewsItem.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Order\CustomerOrders.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Order\CustomerRewardPoints.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Order\Details.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Order\ShipmentDetails.cshtml" />
+    <None Include="Themes\NobleTheme\Views\PrivateMessages\Index.cshtml" />
+    <None Include="Themes\NobleTheme\Views\PrivateMessages\SendPM.cshtml" />
+    <None Include="Themes\NobleTheme\Views\PrivateMessages\ViewPM.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\CompareProducts.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\CustomerProductReviews.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\NewProducts.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\ProductEmailAFriend.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\ProductReviews.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\ProductTemplate.Grouped.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\ProductTemplate.Simple.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\RecentlyViewedProducts.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_AddToCart.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_AddToWishlist.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_Availability.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_BackInStockSubscription.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_CompareProductsButton.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_DeliveryInfo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_Discontinued.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_DownloadSample.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_GiftCardInfo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductAttributes.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductBreadcrumb.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductDetailsPictures.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductEmailAFriendButton.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductManufacturers.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductPrice.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductReviewHelpfulness.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductReviewOverview.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductSpecifications.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductTags.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ProductTierPrices.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_RentalInfo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_ShareButton.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Product\_SKU_Man_GTIN_Ven.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Profile\Components\ProfileInfo\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Profile\Components\ProfilePosts\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Profile\Index.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ReturnRequest\CustomerReturnRequests.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ReturnRequest\ReturnRequest.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\AdminHeaderLinks\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\BlogRssHeaderLink\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\CheckoutProgress\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\CrossSellProducts\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\CurrencySelector\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\EstimateShipping\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\EuCookieLaw\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\ExternalMethods\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\Favicon\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\FlyoutShoppingCart\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HomepageBestSellers\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HomepageCategories\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HomepageNews\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HomePagePolls\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\HomepageProducts\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\LanguageSelector\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\Logo\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\NewsletterBox\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\NewsRssHeaderLink\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\OrderTotals\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\PollBlock\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\PopularProductTags\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\PrivateMessagesInbox\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\PrivateMessagesSentItems\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\ProductsAlsoPurchased\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\RecentlyViewedProductsBlock\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\RelatedProducts\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\SearchBox\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\SelectedCheckoutAttributes\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\SocialButtons\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\StoreThemeSelector\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\TaxTypeSelector\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\TopicBlock\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\VendorNavigation\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Components\Widget\Default.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Error.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Head.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\Header.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\OldInternetExplorerWarning.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_AddressAttributes.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_CategoryLine.Navigation.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_CategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_CategorySubCategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_CheckoutAttributes.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_ColumnsOne.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_CreateOrUpdateAddress.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_DiscountBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Header.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_JavaScriptDisabledWarning.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Notifications.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_OldInternetExplorerWarning.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_OrderReviewData.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Poll.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Print.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_ProductBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Root.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_Root.Head.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Shared\_SubCategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ShoppingCart\Cart.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ShoppingCart\EmailWishlist.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ShoppingCart\Wishlist.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ShoppingCart\_EstimateShippingResult.cshtml" />
+    <None Include="Themes\NobleTheme\Views\ShoppingCart\_GiftCardBox.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Topic\TopicDetails.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Vendor\ApplyVendor.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Vendor\Info.cshtml" />
+    <None Include="Themes\NobleTheme\Views\Vendor\_VendorAttributes.cshtml" />
+    <None Include="Themes\NobleTheme\Views\_ViewImports.cshtml" />
+    <None Include="Themes\NobleTheme\Views\_ViewStart.cshtml" />
+    <None Include="Themes\Universe\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\Universe\Views\Catalog\_CatalogSelectors.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Info.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Login.cshtml" />
+    <None Include="Themes\Universe\Views\Customer\Register.cshtml" />
+    <None Include="Themes\Universe\Views\Home\Index.cshtml" />
+    <None Include="Themes\Universe\Views\Order\Details.cshtml" />
+    <None Include="Themes\Universe\Views\Order\ShipmentDetails.cshtml" />
+    <None Include="Themes\Universe\Views\Product\CompareProducts.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductEmailAFriend.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductReviews.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductTemplate.Grouped.cshtml" />
+    <None Include="Themes\Universe\Views\Product\ProductTemplate.Simple.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\AdminHeaderLinks\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\Logo\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\SearchBox\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\Head.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_CategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Header.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_OldInternetExplorerWarning.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_OrderReviewData.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_ProductBox.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Root.cshtml" />
+    <None Include="Themes\Universe\Views\Shared\_Root.Head.cshtml" />
+    <None Include="Themes\Universe\Views\_ViewImports.cshtml" />
+
+    <None Update="Areas\Admin\sitemap.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\Universe\Content\bootstrapt\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Telegram.Bot" Version="14.11.0" />
+  </ItemGroup>
+
+  <!-- This target execute after "Build" target.
+    We use it to clean up folder with plugins from unnecessary and obsolete libraries. -->
+  <Target Name="NopTarget" AfterTargets="Build">
+    <ItemGroup>
+      <!-- Get plugin description files to get plugin paths -->
+      <PluginsDescription Include="$(MSBuildProjectDirectory)\Plugins\**\plugin.json;" />      
+      <!-- Get paths for all plugins -->
+      <PluginsFolders Include="@(PluginsDescription->'%(relativedir)')" />
+
+      <!-- Get all the libraries from the shadow copy folder to remove them,
+        because depending on the settings, this may not happen when the application is starting,
+        but this can lead to unpredictable results during debugging of the project. -->
+      <ShadowCopiesLibraries Include="$(MSBuildProjectDirectory)\Plugins\bin\*.*" Exclude="$(MSBuildProjectDirectory)\Plugins\bin\placeholder.txt" />
+    </ItemGroup>
+    <PropertyGroup>
+      <PluginsFolders>@(PluginsFolders)</PluginsFolders>
+    </PropertyGroup>
+    <!-- Delete libraries from the shadow copy folder -->
+    <Delete Files="@(ShadowCopiesLibraries)" />
+    <!-- When .NET Core builds a project, it copies all referenced libraries to the output folder.
+      For plugins it creates too many unnecessary files that just take up space.
+      At the moment you can't disable this behavior. That's why we have to manually delete all unnecessary libraries from plugin output directories. -->
+    <MSBuild Projects="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" Properties="PluginPath=$(PluginsFolders)" Targets="NopClear" />
+  </Target>
+  
+  <PropertyGroup> 
+    <!--The common language runtime (CLR) supports two types of garbage collection:
+      workstation garbage collection, which is available on all systems, and server garbage collection,
+      which is available on multiprocessor systems.
+      
+      For single-processor computers, the default workstation garbage collection should be the fastest option.
+      Either workstation or server can be used for two-processor computers.
+      Server garbage collection should be the fastest option for more than two processors.
+      
+      More details about GC you can see here: https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals-->
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <!--In workstation or server garbage collection, you can enable concurrent garbage collection,
+      which enables threads to run concurrently with a dedicated thread that performs the garbage
+      collection for most of the duration of the collection.
+      
+      Concurrent garbage collection enables interactive applications to be more responsive by
+      minimizing pauses for a collection. Managed threads can continue to run most of the time while
+      the concurrent garbage collection thread is running. This results in shorter pauses while
+      a garbage collection is occurring.
+      
+      To improve performance when several processes are running, disable concurrent garbage collection.
+      
+      More details here: https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#concurrent-garbage-collection-->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+  </PropertyGroup>
+
+</Project>

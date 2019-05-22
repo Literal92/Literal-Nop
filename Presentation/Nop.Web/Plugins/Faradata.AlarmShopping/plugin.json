@@ -1,0 +1,11 @@
+{
+  "Group": "Faradata",
+  "FriendlyName": "AlarmShopping",
+  "SystemName": "Faradata.AlarmShopping",
+  "Version": "1.49",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "OMid Pirgazi",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Faradata.AlarmShopping.dll",
+  "Description": "This plugin For Test."
+}

@@ -1,0 +1,20 @@
+﻿@using Nop.Web.Framework.UI;
+
+@{
+    //Loading CSS file
+    Html.AddCssFileParts(ResourceLocation.Head, "~/Plugins/Faradata.SecondWidget/Content/css/Style.css");
+
+    //Loading js file
+    //Third parameter value indicating whether to exclude this script from bundling
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/{PluginName}/Scripts/{JSFileName.js}", true);
+}
+
+<a href="http://faradata.co">
+    <div style="text-align:center;box-shadow: 0px 0px 10px -1px #cecece;padding: 35px;border-radius: 10px;margin: 40px 0;background: #56bcbd;color: #fff;">
+        <img src="~/Plugins/faradata.SecondWidget/logo.png" style="float:right" />
+        <div style="float:right;padding: 40px;font-weight: 800;font-size: 20px;">
+            فرادیتا
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</a>

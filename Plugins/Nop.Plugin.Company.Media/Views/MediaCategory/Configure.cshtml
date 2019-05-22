@@ -1,0 +1,132 @@
+﻿@model Nop.Plugin.Company.Media.ViewModel.CategoryViewModel
+@inject Nop.Core.Domain.Common.AdminAreaSettings adminAreaSettings
+
+@{
+    Layout = "_ConfigurePlugin";
+    var defaultGridPageSize = adminAreaSettings.DefaultGridPageSize;
+    var gridPageSizes = adminAreaSettings.GridPageSizes;
+}
+<form asp-controller="MediaCategory" asp-action="Configure" method="post" id="BehnabFarm-form" asp-route-id=@Model.Id>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h5>@Model.Navigation</h5>
+                </div>
+                <br />
+                <div id="Behnab-grid"></div>
+                <script>
+                    function filterdata() {
+                        return {
+                            Id: @Model.Id,
+                        };
+                    };
+                    $(document).ready(function () {
+                        $("#Behnab-grid").kendoGrid({
+                            dataSource: {
+                                type: "json",
+                                transport: {
+                                    read: {
+                                        url: "@Html.Raw(Url.Action("List", "MediaCategory"))",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: filterdata,
+                                    },
+                                    destroy: {
+                                        url: "@Html.Raw(Url.Action("Delete", "MediaCategory"))",
+                                        type: "POST",
+                                        dataType: "json",
+                                        data: addAntiForgeryToken
+                                    }
+                                },
+                                schema: {
+                                    data: "Data",
+                                    total: "Total",
+                                    errors: "Errors",
+                                    model: {
+                                        id: "Id"
+                                    }
+                                },
+                                requestEnd: function (e) {
+                                    if (e.type == "update") {
+                                        this.read();
+                                    }
+                                },
+                                error: function(e) {
+                                    display_kendoui_grid_error(e);
+                                    // Cancel the changes
+                                    this.cancelChanges();
+                                },
+                                pageSize: @(defaultGridPageSize),
+                                serverPaging: true,
+                                serverFiltering: true,
+                                serverSorting: true
+                            },
+                            pageable: {
+                                refresh: true,
+                                pageSizes: [@(gridPageSizes)],
+                                @await Html.PartialAsync("_GridPagerMessages")
+                            },
+                            editable: {
+                                confirmation: "@T("Admin.Common.DeleteConfirmation")",
+                                mode: "inline"
+                            },
+                            scrollable: false,
+                            columns: [ {
+                                field: "MediaCategoryName",
+                                width: 200,
+                                title: "@T("عنوان")"
+                            },
+                            {
+                                field: "MediaCategoryCode",
+                                width: 150,
+                                title: "@T("کد دسته")"
+                            },
+
+                                {
+                                field: "Id",
+                                 title: "@T("Admin.Common.Edit")",
+                                width: 100,
+                                headerAttributes: { style: "text-align:center" },
+                                attributes: { style: "text-align:center" },
+                                    template: "<button onclick=\"javascript:OpenWindow('@Url.Content("~/Admin/MediaCategory/Edit/")?id=#=Id#&btnId=btnRefresh&formId=BehnabFarm-form', 800, 800, true); return false;\" class='btn btn-warning'><i class=\"fa fa-edit\"></i>@T("Admin.Common.Edit")</button>"
+                            }, {
+                                command: { name: "destroy", text: "@T("Admin.Common.Delete")" },
+                                title: "@T("Admin.Common.Delete")",
+                                headerAttributes: { style: "text-align:center" },
+                                attributes: { style: "text-align:center" },
+                                width: 100
+                            }, {
+
+                                title: "@T("مشاهده زیر دسته")",
+                                width: 100,
+                                    template: "<a href='/Admin/MediaCategory/Configure?id=#=Id#&btnId=btnRefresh&formId=BehnabFarm-form' class='btn btn-success'><span>زیر دسته ها</span></a>",
+                                    headerAttributes: { style: "text-align:center" },
+                                    attributes: { style: "text-align:center" }
+                            }]
+                        });
+                    });
+                </script>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" id="btnAddNewOption" class="btn bg-blue" value="@T("Admin.Common.AddNew")" onclick="javascript:OpenWindow('@(Url.Action("Create", "MediaCategory",  new {Id=Model.Id , btnId = "btnRefresh", formId = "BehnabFarm-form" }))', 800, 800, true); return false;" />
+
+                <input type="submit" id="btnRefresh" class="btn btn-default" style="display: none" />
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#btnRefresh').click(function () {
+                        //refresh grid
+                        var grid = $("#Behnab-grid").data('kendoGrid');
+                        //grid.dataSource.page(1); //new search. Set page size to 1
+                        grid.dataSource.read();
+
+                        //return false to don't reload a page
+                        return false;
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</form>

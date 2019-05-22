@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Company",
+  "FriendlyName": "Media",
+  "SystemName": "Company.Media",
+  "Version": "1.1",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "Company Company",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Company.Media.dll",
+  "Description": "Create-Edit-update-Select"
+}

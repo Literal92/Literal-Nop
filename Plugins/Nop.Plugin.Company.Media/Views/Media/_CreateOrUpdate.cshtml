@@ -1,0 +1,97 @@
+﻿@model Nop.Plugin.Company.Media.Model.MediaModel
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span>اطلاعات</span>
+        </div>
+        <div class="panel-body">
+
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="Title" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="Title" />
+                    <span asp-validation-for="Title"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="Text" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="Text" />
+                    <span asp-validation-for="Text"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <nop-label asp-for="CategoryId" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-select asp-for="CategoryId" asp-items="Model.CategoryList" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    if (Model.Id == 0)
+    {
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span>آپلود فایل</span>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <span>افزودن فایل</span>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="file" name="file" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel-group">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span>دانلود فایل</span>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                               <a href="@Model.URL" download>برای دانلود فایل اینجا کلیک کنید</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+

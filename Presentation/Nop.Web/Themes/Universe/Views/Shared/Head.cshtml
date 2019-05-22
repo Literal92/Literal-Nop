@@ -1,0 +1,57 @@
+﻿@using Nop.Core
+
+@inject IWorkContext workContext
+
+@{
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+
+    Html.AppendCssFileParts("~/Themes/Universe/Content/scripts/perfect-scrollbar.min.css");
+
+    if (supportRtl)
+    {
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/forum.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/1366.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/1024.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/768.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/480.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/mobile.rtl.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/styles.rtl.css");
+    }
+    else
+    {
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/forum.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/1366.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/1024.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/768.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/480.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/mobile.css");
+        Html.AppendCssFileParts("~/Themes/Universe/Content/css/styles.css");
+    }
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/scripts/sevenspikes.core.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/scripts/sevenspikes.theme.ex.min.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/scripts/perfect-scrollbar.min.js");
+    //Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/scripts/footable.min.js");
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/scripts/Universe.js");
+
+
+    //bootstrapt
+    Html.AppendCssFileParts("~/Themes/Universe/Content/bootstrapt/css/bootstrap.min.css");
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/bootstrapt/js/bootstrap.min.js");
+
+    Html.AppendCssFileParts("~/Themes/Universe/Content/css/Custome.css");
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Themes/Universe/Content/owl/owl.carousel.js");
+    Html.AddCssFileParts("~/Themes/Universe/Content/owl/assets/owl.carousel.min.css");
+    Html.AddCssFileParts("~/Themes/Universe/Content/owl/assets/owl.theme.default.min.css");
+
+
+
+}
+<script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<link href="~/Themes/Universe/Content/manifest.json" rel="manifest" />
