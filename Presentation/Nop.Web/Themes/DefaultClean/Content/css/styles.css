@@ -6371,11 +6371,11 @@ pre {
 	vertical-align: middle;
 	font-size: 0;
 }
-.search-box {
-	display: table-cell;
-	text-align: right;
-	vertical-align: middle;
-}
+    .search-box {
+        display: table-header-group;
+        text-align: right;
+        vertical-align: middle;
+    }
 .search-box input.search-box-text,
 .search-box .search-box-button {
 	height: 40px;

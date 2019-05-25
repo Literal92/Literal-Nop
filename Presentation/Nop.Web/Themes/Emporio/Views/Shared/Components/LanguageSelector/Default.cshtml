@@ -1,0 +1,66 @@
+﻿@model LanguageSelectorModel
+@using Microsoft.AspNetCore.Http
+@using System.Net
+@using Nop.Core
+@inject IWebHelper webHelper
+@inject IHttpContextAccessor httpContextAccessor
+@if (Model.AvailableLanguages.Count > 1)
+{
+    <div class="language-selector">
+        @{
+            var rawUrl = webHelper.GetRawUrl(httpContextAccessor.HttpContext.Request);
+
+            if (Model.UseImages)
+            {
+                <div class="language-flag"></div>
+                <ul class="language-list">
+                    @foreach (var lang in Model.AvailableLanguages)
+                    {
+                        <li>
+				<a href="@webHelper.ModifyQueryString(Url.RouteUrl("ChangeLanguage", new {langid = lang.Id}, webHelper.CurrentRequestProtocol), "returnurl", rawUrl)" title="@lang.Name">
+                                <img title='@lang.Name' alt='@lang.Name' @(lang.Id == Model.CurrentLanguageId ? " class=selected" : null)
+                                     src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                var languages = Model.AvailableLanguages.Select(lang => new SelectListItem
+                {
+                    Text = lang.Name,
+                Value = webHelper.ModifyQueryString(Url.RouteUrl("ChangeLanguage", new { langid = lang.Id }, webHelper.CurrentRequestProtocol), "returnurl", rawUrl),
+                    Selected = lang.Id.Equals(Model.CurrentLanguageId)
+                });
+
+                <select id="customerlanguage" name="customerlanguage" asp-items="@languages" onchange="setLocation(this.value);"></select>
+            }
+        }
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        getSelectedLanguageFlag();
+
+        var onClickShowLanguageimgList = function () {
+            $(".language-list").addClass("active");
+        };
+        $(".language-flag").unbind("click").click(onClickShowLanguageimgList);
+
+        $(".master-wrapper-page").unbind("click").click(function (evt) {
+            if (evt.target.className == "language-flag" || evt.target.className == "images") {
+                return;
+            } else if ($(".language-list").is(".active")) {
+                $(".language-list").removeClass("active");
+            }
+        });
+
+    });
+    var getSelectedLanguageFlag = function () {
+        if ($("img.selected", ".language-selector")) {
+            var src = $(".selected").attr("src");
+            $(".language-flag").html("<img class='images' src='" + src + "'>");
+        }
+    };
+</script>

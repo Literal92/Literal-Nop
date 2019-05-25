@@ -1,15 +1,7 @@
 ﻿@model TopMenuModel
 <!--Navbar-->
-<nav class="menu-navigation-basic">
-    <a href="#" class="selected">Home</a>
-    <a href="#">Products</a>
-    <a href="#">Services</a>
-    <a href="#">Reach us</a>
-    <a href="#">About</a>
-</nav>
-
 <!--/.Navbar-->
-@*<ul class="top-menu">
+<ul class="top-menu">
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
         @if (Model.DisplayHomePageMenuItem)
         {
@@ -55,7 +47,7 @@
             <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
-    </ul>*@
+    </ul>
 @{
     @*var rootCategoriesResponsive = Model.Categories.ToList();
         //name it "Categories" if we have only categories. Otherwise, "Menu"
