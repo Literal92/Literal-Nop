@@ -1,11 +1,15 @@
-{
+﻿{
   "Group": "Faradata",
   "FriendlyName": "IranSansWidget",
   "SystemName": "Faradata.IranSansWidget",
   "Version": "1.49",
-  "SupportedVersions": [ "4.10" ],
+  "SupportedVersions": [
+    "4.10"
+  ],
   "Author": "OMid Pirgazi",
   "DisplayOrder": 1,
   "FileName": "Nop.Plugin.FaraData.IranSansWidget.dll",
-  "Description": "This plugin For Test."
+  "Description": "This plugin For Test.",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": []
 }

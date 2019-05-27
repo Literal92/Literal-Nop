@@ -1,6 +1,5 @@
 ﻿{
   "DataProvider": "sqlserver",
-  "DataConnectionString": "Data Source=192.168.20.24,1433;Initial Catalog=shopcommerce2;uid=sa;pwd=Etajer@321;MultipleActiveResultSets=true",
-  //"DataConnectionString": "Data Source=(localdb)\\AmTavakoli;Initial Catalog=NopCommerce;Integrated Security=True;Persist Security Info=False",
+  "DataConnectionString": "Data Source=.;Initial Catalog=NopCommerce;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=1",
   "RawDataSettings": {}
 }

@@ -7,10 +7,6 @@ using Nop.Core.Infrastructure.DependencyManagement;
 using Nop.Data;
 using Nop.Plugin.Faradata.FirstTest.Services;
 using Nop.Plugin.Faradata.Test.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data.Linq.Mapping;
 using Nop.Web.Framework.Infrastructure.Extensions;
 
 namespace Nop.Plugin.Faradata.FirstTest.Infrastructure
